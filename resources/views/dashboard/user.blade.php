@@ -13,6 +13,7 @@
             <tr>
                 <th scope="col">No</th>
                 <th scope="col">Nama Pengguna</th>
+                <th scope="col">Email Pengguna</th>
                 <th scope="col">Role</th>
                 <th scope="col">Aksi</th>
             </tr>
@@ -22,10 +23,18 @@
                 <tr>
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
                     <td>{{ $user->role->name }}</td>
                     <td>
-                        <a href="#" type="button" class="btn btn-primary">Edit</a>
-                        <a href="#" type="button" class="btn btn-danger">Hapus</a>
+                        <div class="d-flex">
+                            <a href="{{ route('users.edit', $user->id) }}" type="button"
+                                class="btn btn-primary mx-1">Edit</a>
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

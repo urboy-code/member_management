@@ -32,31 +32,34 @@ class UserManagementController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
+            'email' => 'required',
+            'password' => 'required',
             'role_id' => 'required',
         ]);
 
         $user = new User();
-        $user->name = $request->name;
+        $user->name = $request->nama;
+        $user->email = $request->email;
+        $user->password = $request->password;
         $user->role_id = $request->role_id;
         $user->save();
-        return redirect()->route('users');
+        return redirect()->route('users.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    public function show(string $id) {}
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        return view('dashboard.user-edit', compact('user', 'roles'));
     }
 
     /**
@@ -64,7 +67,21 @@ class UserManagementController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role_id' => 'required',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->name = $request->nama;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role_id = $request->role_id;
+        $user->save();
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -72,6 +89,9 @@ class UserManagementController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index');
     }
 }

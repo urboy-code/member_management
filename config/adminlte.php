@@ -318,8 +318,15 @@ return [
         ],
         [
             'text' => 'Dashboard',
-            'url' => 'admin',
+            'url' => 'dashboard/admin',
             'icon' => 'far fa-fw fa-file',
+            'label' => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'Rekaptulation Management',
+            'url' => 'rekaps',
+            'icon' => 'fas fa-fw fa-user',
             'label' => 4,
             'label_color' => 'success',
         ],

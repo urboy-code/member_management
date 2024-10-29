@@ -11,26 +11,28 @@
 
     <div class="main-content mt-2">
         <div class="card-body">
-            <form action="{{ route('users.store') }}" method="POST">
+            <form action="{{ route('users.update', $user->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="" class="form-label">Nama </label>
-                    <input type="text" class="form-control" name="nama">
+                    <input type="text" class="form-control" name="nama" value="{{ $user->name }}">
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Email </label>
-                    <input type="email" class="form-control" name="email">
+                    <input type="email" class="form-control" name="email" value="{{ $user->email }}">
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Password </label>
-                    <input type="password" class="form-control" name="password">
+                    <input type="password" class="form-control" name="password" value="{{ $user->password }}">
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Role</label>
                     <select name="role_id" class="form-control">
                         <option value="">Pilih Role</option>
                         @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            <option {{ $role->id === $user->role_id ? 'selected' : '' }} value="{{ $role->id }}">
+                                {{ $role->name }}</option>
                         @endforeach
                     </select>
                 </div>
