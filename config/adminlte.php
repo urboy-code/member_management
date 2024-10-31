@@ -325,7 +325,7 @@ return [
         ],
         [
             'text' => 'Rekaptulation Management',
-            'url' => 'rekaps',
+            'url' => 'rekaptulasi',
             'icon' => 'fas fa-fw fa-user',
             'label' => 4,
             'label_color' => 'success',

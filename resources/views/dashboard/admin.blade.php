@@ -7,14 +7,21 @@
 @stop
 
 @section('content')
-    <div class="container">
-        <h1>Dashboard</h1>
-
-        <div>
-            <h3>Total Anggota Hari Ini: {{ $totalToday }}</h3>
-            <h3>Total Anggota Keseluruhan: {{ $totalMembers }}</h3>
+    <div class="container d-flex ">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Total Anggota Hari </h5>
+                <p class="card-text">{{ $totalToday }}</p>
+            </div>
         </div>
-
+        <div class="card mx-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Total Anggota Hari </h5>
+                <p class="card-text">{{ $totalMembers }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
         <div>
             <canvas id="registrationChart"></canvas>
         </div>

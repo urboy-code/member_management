@@ -19,8 +19,13 @@ Route::get('/dashboard', function () {
 // Route::get("users", [UserManagementController::class, 'index'])->name('user.index');
 Route::resource('dashboard/admin', AdminPusatDashboardController::class);
 Route::resource('users', UserManagementController::class);
-Route::resource('rekaps', RekaptulationController::class);
+Route::resource('rekaptulasi', RekaptulationController::class);
+Route::get('rekaptulasi/export', [RekaptulationController::class, 'export'])->name('rekaptulasi.export');
 Route::resource('member', MemberRegistrasiController::class);
+
+// Route::middleware(['auth', 'role_id:1'])->group(function () {
+//     Route::get('dashboard/admin', [AdminPusatDashboardController::class, 'index']);
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,4 +33,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
